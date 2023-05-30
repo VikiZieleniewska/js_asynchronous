@@ -162,3 +162,25 @@ async function getDataMagic(url) {
 }
 
 getDataMagic(url).catch(console.error);
+
+//------------------------------------------
+
+// function move(top, left) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       boxRef.style.left = left;
+//       boxRef.style.top = top;
+//       resolve();
+//     }, 3000);
+//   });
+// }
+
+async function animate() {
+  // przerobienie powyższego kodu
+  await move(0, "500px");
+  await move("500px", "500px");
+  await move("500px", 0);
+  await move(0, 0);
+}
+
+animate().catch(() => {});
