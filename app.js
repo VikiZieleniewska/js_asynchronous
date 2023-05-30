@@ -98,15 +98,67 @@ const url = "https://api.nbp.pl/api/exchangerates/rates/a/chf/?format=json";
 //     .catch((error) => console.log(error))
 //     .finally(() => {console.log('done!')})
 
-function* gen() {
-  console.log(1);
-  yield 1;
-  console.log(2);
-  yield 2;
-  console.log(3);
+//----------------------------------------------
+
+// function* gen() {
+//   console.log(1);
+//   yield 1;
+//   console.log(2);
+//   yield 2;
+//   console.log(3);
+// }
+
+// const g = gen();
+// console.log(g.next());
+// console.log(g.next());
+// console.log(g.next());
+
+//-------------------------------------
+
+// function* infiniteId() {
+//   let counter = 1;
+//   while (true) {
+//     yield counter;
+//     counter++;
+//   }
+// }
+
+// const g = infiniteId();
+// console.log(g.next());
+// console.log(g.next());
+// console.log(g.next());
+// console.log(g.next());
+// console.log(g.next());
+// console.log(g.next());
+// console.log(g.next());
+
+// --------------------------------------
+
+// function* g() {
+//   let a = 10;
+//   let b = yield a + 20;
+//   yield b;
+// }
+
+// const g1 = g();
+// console.log(g1.next());
+// console.log(g1.next(42));
+
+//------------------------------------------
+
+function* getData(url) {
+  const data = yield fetch(url);
+  console.log(data);
 }
 
-const g = gen();
-console.log(g.next());
-console.log(g.next());
-console.log(g.next());
+const g = getData(url);
+g.next().value.then((response) => g.next(response));
+
+// ------------------------------------------
+// to jest to samo co powyższy kod
+async function getDataMagic(url) {
+  const data = await fetch(url);
+  console.log(data);
+}
+
+getDataMagic(url).catch(console.error);
