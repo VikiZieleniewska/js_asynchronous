@@ -9,4 +9,4 @@
 
 ## sync vs async code
 
-![Diagram] (async_test_diagram.png)
+![Diagram](async_test_diagram.png)
